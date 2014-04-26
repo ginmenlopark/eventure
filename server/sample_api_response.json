@@ -1,6 +1,6 @@
 {
   "routes": [{
-    "legs": [{
+    "steps": [{
       "type": "travel",
       "steps": [{
         "start": "38.5823,-121.5053",
@@ -26,7 +26,7 @@
       "duration": 0
     }]
   }, {
-    "legs": [{
+    "steps": [{
       "type": "travel",
       "steps": [{
         "start": "38.5823,-121.5053",

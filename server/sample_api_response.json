@@ -2,7 +2,7 @@
   "routes": [{
     "steps": [{
       "type": "travel",
-      "steps": [{
+      "segments": [{
         "start": "38.5823,-121.5053",
         "end": "37.5746,-121.3121",
         "distance": 132610,
@@ -14,7 +14,7 @@
       "duration": 1854
     }, {
       "type": "travel",
-      "steps": [{
+      "segments": [{
         "start": "37.5746,-121.3121",
         "end": "34.1018,-118.3409",
         "distance": 502115,
@@ -28,7 +28,7 @@
   }, {
     "steps": [{
       "type": "travel",
-      "steps": [{
+      "segments": [{
         "start": "38.5823,-121.5053",
         "end": "37.8009,-121.1922",
         "distance": 97043,
@@ -40,7 +40,7 @@
       "duration": 1357
     }, {
       "type": "travel",
-      "steps": [{
+      "segments": [{
         "start": "37.8009,-121.1922",
         "end": "36.2160,-119.3297",
         "distance": 257495,
@@ -51,7 +51,7 @@
       "duration": 3600
     }, {
       "type": "travel",
-      "steps": [{
+      "segments": [{
         "start": "36.2160,-119.3297",
         "end": "34.1018,-118.3409",
         "distance": 268760,

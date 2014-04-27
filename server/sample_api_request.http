@@ -1,1 +1,1 @@
-GET /directions?origin=38.5823,-121.5053&destination=34.1018, -118.3409&charge=86400000
+GET /directions?origin=38.5823,-121.5053&destination=34.1018,-118.3409&charge=86400000

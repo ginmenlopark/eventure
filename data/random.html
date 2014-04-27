@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        background: #ddd;
+        bottom: 0;
+        left: 0;
+        margin: 8px;
+        position: absolute;
+        top: 0;
+      }
+
+      #data {
+        background: #ddd;
+        left: 0;
+        margin: 8px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body style>
+    <div id="map"><canvas id="canvas"></canvas></div>
+    <div id="data"></div>
+    <script type="text/javascript">
+      (function() {
+        var points = [];
+
+        function toLongitude(x) {
+          var left = -124.2119;
+          var right = -114.5269;
+          return left + x * (right - left);
+        }
+
+        function toLatitude(y) {
+          var top = 41.9984;
+          var bottom = 32.7571;
+          return top + y * (bottom - top);
+        }
+
+        function sizeCanvas() {
+          var canvas = document.querySelector('#canvas');
+          var data = document.querySelector('#data');
+          canvas.width = canvas.parentNode.clientHeight * 2 / 3;
+          canvas.height = canvas.parentNode.clientHeight;
+          data.style.left = (canvas.parentNode.clientWidth + 8) + 'px';
+        }
+
+        function drawBackground() {
+          // Get interesting coordinates.
+          var canvas = document.querySelector('#canvas');
+          var size = {width: canvas.width, height: canvas.height};
+          var x1 = 0;
+          var x2 = size.width / 2;
+          var x3 = size.width;
+          var y1 = 0;
+          var y2 = size.height / 3;
+          var y3 = size.height / 2;
+          var y4 = size.height * 5 / 6;
+          var y5 = size.height;
+
+          // Draw the map background.
+          var context = canvas.getContext('2d');
+          context.fillStyle = '#bbb';
+          context.beginPath();
+          context.moveTo(x1, y1);
+          context.lineTo(x2, y1);
+          context.lineTo(x2, y2);
+          context.lineTo(x3, y4);
+          context.lineTo(x3, y5);
+          context.lineTo(x2, y5);
+          context.lineTo(x1, y3);
+          context.closePath();
+          context.fill();
+
+          // Generate 20,000 random points in the map if not already done.
+          if (points.length == 0) {
+            var data = document.querySelector('#data');
+            while (points.length < 20000) {
+              var x = Math.random();
+              var y = Math.random();
+              if (context.isPointInPath(x * size.width, y * size.height)) {
+                var coordinates = toLatitude(y) + ', ' + toLongitude(x);
+                data.appendChild(document.createTextNode(coordinates));
+                data.appendChild(document.createElement('br'));
+                points.push({x: x, y: y});
+              }
+            }
+          }
+        }
+
+        function drawPoints() {
+          var canvas = document.querySelector('#canvas');
+          var size = {width: canvas.width, height: canvas.height};
+          var context = canvas.getContext('2d');
+          for (var i = 0; i < points.length; ++i) {
+            var point = points[i];
+            var x = points[i].x * size.width;
+            var y = points[i].y * size.height;
+            context.beginPath();
+            context.fillStyle = '#f00';
+            context.arc(x, y, 1, 0, 2 * Math.PI);
+            context.closePath();
+            context.fill();
+          }
+        }
+
+        function updateCanvas() {
+          sizeCanvas();
+          drawBackground();
+          drawPoints();
+        }
+
+        window.addEventListener('load', updateCanvas);
+        window.addEventListener('resize', updateCanvas);
+      }())
+    </script>
+  </body>
+</html>

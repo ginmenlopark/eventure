@@ -83,10 +83,10 @@
           context.closePath();
           context.fill();
 
-          // Generate 20,000 random points in the map if not already done.
+          // Generate 1,000 random points in the map if not already done.
           if (points.length == 0) {
             var data = document.querySelector('#data');
-            while (points.length < 20000) {
+            while (points.length < 1000) {
               var x = Math.random();
               var y = Math.random();
               if (context.isPointInPath(x * size.width, y * size.height)) {
@@ -109,7 +109,7 @@
             var y = points[i].y * size.height;
             context.beginPath();
             context.fillStyle = '#f00';
-            context.arc(x, y, 1, 0, 2 * Math.PI);
+            context.arc(x, y, 1.5, 0, 2 * Math.PI);
             context.closePath();
             context.fill();
           }

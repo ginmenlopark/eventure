@@ -11,27 +11,45 @@
             src="https://maps.googleapis.com/maps/api/js?key=&sensor=true">
     </script>
     <script type="text/javascript">
-      google.maps.event.addDomListener(window, 'load', function() {
-        var origin = new google.maps.LatLng(38.5823, -121.5053);
-        var destination = new google.maps.LatLng(34.1018, -118.3409);
-        var midpoint = new google.maps.LatLng(36.3421, -119.9231);
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-                                      {center: midpoint, zoom: 7});
+      (function() {
+        function toLatLng(latitude, longitude) {
+          return new google.maps.LatLng(latitude, longitude);
+        }
 
-        new google.maps.DirectionsService().route({
-          origin: origin,
-          destination: destination,
-          travelMode: google.maps.TravelMode.DRIVING
-        }, function(directions, status) {
-          if (status == google.maps.DirectionsStatus.OK) {
-            var display = new google.maps.DirectionsRenderer();
-            display.setDirections(directions);
-            display.setMap(map);
-          } else {
-            console.log(status);
-          }
+        function midpoint(point1, point2) {
+          return toLatLng((point1.lat() + point2.lat()) / 2,
+                          (point1.lng() + point2.lng()) / 2);
+        }
+
+        function addRoute(map, directions, origin, destination) {
+          directions.route({
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING
+          }, function(route, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              var display = new google.maps.DirectionsRenderer();
+              display.setDirections(route);
+              display.setMap(map);
+            } else {
+              console.log(status);
+            }
+          });
+        }
+
+        google.maps.event.addDomListener(window, 'load', function() {
+          var point1 = toLatLng(38.5823, -121.5053);
+          var point2 = toLatLng(37.5828, -121.3232);
+          var point3 = toLatLng(34.1018, -118.3409);
+          var directions = new google.maps.DirectionsService();
+          var map = new google.maps.Map(
+              document.getElementById("map-canvas"),
+              {center: midpoint(point1, point3), zoom: 7});
+
+          addRoute(map, directions, point1, point2);
+          addRoute(map, directions, point2, point3);
         });
-      });
+      }());
     </script>
   </head>
   <body>

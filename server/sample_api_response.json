@@ -1,66 +1,57 @@
 {
   "routes": [{
-    "steps": [{
-      "type": "travel",
+    "legs": [{
       "segments": [{
         "start": "38.5823,-121.5053",
-        "end": "37.5746,-121.3121",
+        "end": "37.5828,-121.3232",
         "distance": 132610,
         "energy": 71193600,
-        "duration": 4380}]
+        "duration": 4380}],
+      "charge": {
+        "energy": 71193600,
+        "duration": 1854}
     }, {
-      "type": "charge",
-      "energy": 71193600,
-      "duration": 1854
-    }, {
-      "type": "travel",
       "segments": [{
-        "start": "37.5746,-121.3121",
+        "start": "37.5828,-121.3232",
         "end": "34.1018,-118.3409",
         "distance": 502115,
         "energy": 269568000,
-        "duration": 16020}]
-    }, {
-      "type": "charge",
-      "energy": 0,
-      "duration": 0
+        "duration": 16020}],
+      "charge": {
+        "energy": 0,
+        "duration": 0}
     }]
   }, {
-    "steps": [{
-      "type": "travel",
+    "legs": [{
       "segments": [{
         "start": "38.5823,-121.5053",
         "end": "37.8009,-121.1922",
         "distance": 97043,
         "energy": 52098962,
-        "duration": 3480}]
+        "duration": 3480}],
+      "charge": {
+        "energy": 52098962,
+        "duration": 1357}
     }, {
-      "type": "charge",
-      "energy": 52098962,
-      "duration": 1357
-    }, {
-      "type": "travel",
       "segments": [{
         "start": "37.8009,-121.1922",
         "end": "36.2160,-119.3297",
         "distance": 257495,
         "energy": 138239978,
-        "duration": 8580}]
+        "duration": 8580}],
+      "charge": {
+        "energy": 138239978,
+        "duration": 3600}
     }, {
-      "energy": 138239978,
-      "duration": 3600
-    }, {
-      "type": "travel",
       "segments": [{
         "start": "36.2160,-119.3297",
         "end": "34.1018,-118.3409",
         "distance": 268760,
         "energy": 144287760,
-        "duration": 8940}]
-    }, {
-      "type": "charge",
-      "energy": 0,
-      "duration": 0
+        "duration": 8940}],
+      "charge": {
+        "energy": 0,
+        "duration": 0}
     }]
   }]
 }
